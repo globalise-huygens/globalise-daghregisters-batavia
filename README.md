@@ -1,8 +1,26 @@
-# globalise-daghregisters-batavia
+# Daghregisters Batavia
 
 ## Download
 ```bash
 wget --wait=10 --random-wait --input-file=urls.txt --directory-prefix=images --content-disposition
+```
+
+## Make things sortable
+Zero-padd every filename so that we can easily sort the files.
+
+```bash
+for f in *.tif; do
+  if [[ $f =~ seq_([0-9]+) ]]; then
+    number="${BASH_REMATCH[1]}";
+    padded_number=$(printf "%04d" "$number");
+    
+    new_f="${f/seq_$number/seq_$padded_number}";
+
+    if [[ "$f" != "$new_f" ]]; then
+      mv "$f" "$new_f";
+    fi;
+  fi;
+done
 ```
 
 ## OCR
