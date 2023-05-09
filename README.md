@@ -92,3 +92,31 @@ for prefix in $prefixes; do
     mv "$sourcedir/$prefix"* "$folder_path/"
 done
 ```
+
+## Convert to PAGEXML
+Latest `PageConverter.jar` downloaded from https://github.com/PRImA-Research-Lab/prima-page-converter/releases/tag/1.5.05
+
+```bash
+sourcedir="hocr/"
+targetdir="pagexml/"
+
+mkdir -p "$targetdir"
+
+hocr_files=$(find "$sourcedir" -type f -name "*.hocr")
+
+for hocr_file in $hocr_files; do
+    relative_path="${hocr_file#"$sourcedir"/}"
+    target_folder="$targetdir/$(dirname "$relative_path")"
+    target_folder="${target_folder//hocr/}"
+    target_folder="${target_folder#/}"
+    
+    mkdir -p "$target_folder"
+
+    filename=$(basename "$hocr_file")
+    filename_no_ext="${filename%.hocr}"
+    target_file="$target_folder/${filename_no_ext}.xml"
+
+    java -jar PageConverter.jar -source-xml "$hocr_file" -target-xml "$target_file" -convert-to LATEST
+done
+```
+
