@@ -120,3 +120,5 @@ for hocr_file in $hocr_files; do
 done
 ```
 
+## Notes on use
+* includes comment on digitisation on every page
