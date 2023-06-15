@@ -122,3 +122,4 @@ done
 
 ## Notes on use
 * includes comment on digitisation on every page
+* the file https://github.com/globalise-huygens/globalise-daghregisters-batavia/blob/main/Daghregisters%20-%20Inventories.csv contains metadata on the volumes (year or years from which the daily journals date, library that holds the copy that was scanned, number of pages per volume; this file also shows which copies were selected for use and which copies are considered duplicates and ignored (txt files of these volumes can be found in the folder duplicates).
